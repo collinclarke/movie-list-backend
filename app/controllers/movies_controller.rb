@@ -3,6 +3,10 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
   before_action :set_cors, only: [:destroy]
 
+  # TODO add user model / session controller so as to allow user specific data
+  # TODO User, Movie has many reviews, reviews have one movie, user.
+  # TODO this controller would be for reviews
+
   # GET /movies
   def index
     @movies = Movie.all
