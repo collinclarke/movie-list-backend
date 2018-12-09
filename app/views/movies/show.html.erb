@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
+<p><%= @movie.title %></p>
+<p><%= @movie.rating %></p>
+<p><%= @movie.comment %></p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
