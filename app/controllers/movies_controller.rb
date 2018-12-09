@@ -1,10 +1,12 @@
 class MoviesController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new {|c| c.request.format.json? }
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_cors, only: [:destroy]
 
   # GET /movies
   def index
     @movies = Movie.all
+    render json: @movies
   end
 
   # GET /movies/1
@@ -32,7 +34,11 @@ class MoviesController < ApplicationController
 
   # DELETE /movies/1
   def destroy
-    render text: 'Movie Deleted'
+    if @movie.destroy
+      render json: {success: 'success'}
+    else
+      render json: @movie.errors
+    end
   end
 
   private
@@ -48,5 +54,10 @@ class MoviesController < ApplicationController
         :comment,
         :title
       )
+    end
+
+    def set_cors
+      headers['Access-Control-Allow-Origin'] = 'http://localhost:4200'
+      headers["Access-Control-Allow-Methods"] = "DELETE"
     end
 end
