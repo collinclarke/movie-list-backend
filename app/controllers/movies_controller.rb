@@ -17,6 +17,16 @@ class MoviesController < ApplicationController
   def show
   end
 
+  # GET /movies/:title
+  def find_by_title
+    @movie = Movie.find_by title: params[:title]
+    if @movie
+      render json: @movie
+    else
+      render json: {error: 'Not Found'}
+    end
+  end
+
   # POST /movies
   def create
     @movie = Movie.new(movie_params)
