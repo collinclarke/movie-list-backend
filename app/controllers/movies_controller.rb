@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     if @movie
       render json: @movie
     else
-      render json: {error: 'Not Found'}
+      render json: {Error: 'Not Found'}
     end
   end
 
