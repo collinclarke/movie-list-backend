@@ -13,7 +13,7 @@ module MovieList
 
     config.middleware.use Rack::Cors do
       allow do
-        origins 'http://localhost:4200'
+        origins 'http://localhost:4200, https://collinclarke.github.io'
         resource '*',
                  headers: :any,
                  :methods => [:delete, :post, :patch, :get, :options]
